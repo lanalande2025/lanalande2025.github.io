@@ -116,6 +116,8 @@ section {
 	background-image: url('../images/bg1.jpg');
 	background-position: center;
 	background-size: cover;
+
+	padding-bottom: 5vh;
 }
 
 .hero-title {
