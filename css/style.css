@@ -1,0 +1,240 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+
+	-webkit-tap-highlight-color: transparent; /* Safari, iOS */
+	tap-highlight-color: transparent; /* Стандартизированное имя */
+	outline: none;
+	user-select: none; /* Чтобы нельзя было выделять */
+	-webkit-user-drag: none; /* На всякий случай */
+}
+
+::selection {
+	background-color: #5902a5; /* Цвет фона при выделении */
+	color: rgb(231, 231, 231); /* Цвет текста при выделении */
+}
+
+html,
+body {
+	background-color: #212121;
+	color: #e8e8e8;
+
+	position: relative;
+
+	height: 100%;
+	overflow: hidden;
+}
+
+p {
+	font-size: 1.3rem;
+}
+
+/* .icon-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 2px;
+
+	border-radius: 100%;
+
+	background-color: #e8e8e832;
+	transition: 0.5s;
+
+	cursor: pointer;
+}
+
+.icon-wrapper:hover {
+	background-color: #e8e8e855;
+	transition: 0.5s;
+}
+
+.icon-wrapper img {
+	width: 2rem;
+	height: 2rem;
+} */
+
+.icon-wrapper {
+	/* 1. Задаем размеры и делаем кружок */
+	width: 60px;
+	height: 60px;
+	border-radius: 50%; /* Обязательно для круглой формы */
+	cursor: pointer;
+
+	/* 2. Задаем цвет "тела" кружка. 
+     Можно использовать полупрозрачный для красивого эффекта. */
+	background-color: rgba(255, 255, 255, 0.7);
+
+	/* 3. Анимация для наведения */
+	transition: background-color 0.3s ease, transform 0.3s ease;
+
+	/*
+   * 4. МАГИЯ МАСКИРОВАНИЯ
+   * Это самая важная часть. Мы используем изображение стрелки как трафарет,
+   * чтобы "пробить дыру" в нашем кружке.
+  */
+
+	/* Указываем путь к нашей стрелке-трафарету */
+	mask-image: url('../icons/arrow-down-icon.png');
+	-webkit-mask-image: url('../icons/arrow-down-icon.png'); /* Для поддержки Safari/Chrome */
+
+	/* Настраиваем маску */
+	mask-size: 45%; /* Размер стрелки внутри кружка (подберите по вкусу) */
+	-webkit-mask-size: 45%;
+
+	mask-position: center; /* Располагаем стрелку по центру */
+	-webkit-mask-position: center;
+
+	mask-repeat: no-repeat; /* Запрещаем маске повторяться */
+	-webkit-mask-repeat: no-repeat;
+}
+
+/* Эффект при наведении курсора */
+.icon-wrapper:hover {
+	background-color: rgba(255, 255, 255, 1); /* Делаем кружок полностью белым */
+	transform: scale(1.1); /* Слегка увеличиваем */
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+
+	align-items: center;
+
+	gap: 0.75rem;
+
+	overflow-x: hidden;
+}
+
+.scrolling-container {
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	background-image: url('../images/bg1.jpg');
+	background-position: center;
+	background-size: cover;
+}
+
+.hero-title {
+	background-color: #e8e8e832;
+	padding: 1rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	flex-direction: column;
+
+	width: 95%;
+	max-width: 500px;
+
+	border-radius: 20px;
+}
+
+.message-wrapper {
+	width: 95%;
+	max-width: 500px;
+}
+
+.message-content {
+	background-color: #e8e8e832;
+	padding: 1rem;
+
+	padding-top: 0.5rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	flex-direction: column;
+
+	gap: 10px;
+
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.message-content :is(img, video) {
+	border-radius: 20px;
+	width: 100%;
+
+	cursor: pointer;
+
+	transition: transform 0.25s;
+}
+
+.message-content :is(img:not(.active), video:not(.active)):hover {
+	transform: scale(1.005);
+
+	transition: transform 0.5s;
+}
+
+.message-content :is(img, video).active {
+	max-width: 95%;
+	max-height: 95%;
+
+	width: auto;
+	height: auto;
+
+	object-fit: contain;
+	display: block;
+}
+
+.imgOrVideo_wrapper {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	backdrop-filter: blur(20px);
+	overflow: hidden;
+
+	z-index: 999;
+	background-color: #2121211f;
+}
+
+.active {
+	max-height: 90vh;
+	max-width: 90vw;
+	z-index: 1000;
+
+	border-radius: 20px;
+}
+
+.message-title {
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+
+	padding: 0.5rem;
+	padding-left: 1rem;
+}
+
+.love-wrapper {
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.love-img {
+	width: 100vw;
+	height: 100vh;
+
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	background-color: #f4e6c5;
+}

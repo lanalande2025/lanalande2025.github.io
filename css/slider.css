@@ -1,0 +1,16 @@
+.slider {
+	height: 100vh;
+}
+
+.slider__img {
+	height: 100vh;
+	width: 100vw;
+
+	background-position: center;
+	background-size: cover;
+}
+
+.swiper-slide:nth-child(2) {
+	align-items: flex-start;
+	justify-content: flex-start;
+}
